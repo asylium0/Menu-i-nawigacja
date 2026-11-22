@@ -16,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText etName;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         sectionForm = findViewById(R.id.sectionForm);
         sectionSettings = findViewById(R.id.sectionSettings);
 
-
+        setUpBottomNavigation();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -44,6 +46,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setUpBottomNavigation() {
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_form) {
+                showSection(true);
+                return true;
+            } else if (id == R.id.nav_settings) {
+                showSection(false);
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void showSection(boolean form) {
+        sectionForm.setVisibility(form ? View.VISIBLE : View.GONE);
+        sectionSettings.setVisibility(form ? View.GONE : View.VISIBLE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
