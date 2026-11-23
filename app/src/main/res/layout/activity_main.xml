@@ -61,6 +61,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_dark" />
+
+        <CheckBox
+            android:id="@+id/cbSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_save" />
+
+        <CheckBox
+            android:id="@+id/cbSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_sound" />
+
+        <TextView
+            android:id="@+id/tvSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etName;
     private View sectionForm, sectionSettings;
+    private TextView tvSettings;
+    private CheckBox cbNotifications, cbSound, cbDark, cbSave;
 
 
     @Override
@@ -36,7 +40,19 @@ public class MainActivity extends AppCompatActivity {
         etName = findViewById(R.id.etName);
         sectionForm = findViewById(R.id.sectionForm);
         sectionSettings = findViewById(R.id.sectionSettings);
+        tvSettings = findViewById(R.id.tvSettings);
+        cbDark = findViewById(R.id.cbDark);
+        cbNotifications = findViewById(R.id.cbNotifications);
+        cbSave = findViewById(R.id.cbSave);
+        cbSound  = findViewById(R.id.cbSound);
 
+        cbSound.setOnClickListener(v -> changeSettings());
+        cbDark.setOnClickListener(v -> changeSettings());
+        cbSave.setOnClickListener(v -> changeSettings());
+        cbNotifications.setOnClickListener(v -> changeSettings());
+
+
+        tvSettings.setText(getString(R.string.tv_settings, ""));
         setUpBottomNavigation();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -45,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    private void changeSettings(){
+        StringBuilder settings = new StringBuilder();
+        CheckBox[] checkBoxes = {cbNotifications,cbSave, cbDark, cbSound};
+        for(CheckBox i : checkBoxes){
+            if(i.isChecked()){
+                settings.append(i.getText().toString()).append(", ");
+            }
+        tvSettings.setText(getString(R.string.tv_settings, settings));
+
+        }
+    }
+
+
 
     private void setUpBottomNavigation() {
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
