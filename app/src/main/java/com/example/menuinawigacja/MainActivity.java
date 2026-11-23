@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -115,12 +116,30 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_about) {
             startActivity(new Intent(this, AboutActivity.class));
             return true;
+        } else if (id == R.id.action_default) {
+            confirmDefault();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void confirmDefault(){
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_title)
+                .setMessage(R.string.confirm_message)
+                .setPositiveButton(R.string.yes, (dialog, which) -> setDefault())
+                .setNegativeButton(R.string.no, null)
+                .show();
+    }
 
+    private void setDefault(){
+        CheckBox[] checkBoxes = {cbNotifications,cbSave, cbDark, cbSound};
+        for (CheckBox i : checkBoxes){
+            i.setChecked(false);
+        }
+        changeSettings();
+    }
     private void clearForm() {
         etName.setText("");
         Toast.makeText(this, R.string.cleared, Toast.LENGTH_SHORT).show();

@@ -5,6 +5,7 @@
     <string name="action_share">Udostępnij</string>
     <string name="action_clear">Wyczyść</string>
     <string name="action_about">O aplikacji</string>
+    <string name="action_default">Przywróć domyślne</string>
 
     <string name="nav_form">Formularz</string>
     <string name="nav_settings">Ustawienia</string>
@@ -23,4 +24,9 @@
     <string name="nothing_to_share">Najpierw wpisz imię</string>
 
     <string name="tv_settings">Aktualnie wybrano: %s</string>
+
+    <string name="confirm_title">Na pewno?</string>
+    <string name="confirm_message">Przywrócić domyślne?</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
 </resources>
